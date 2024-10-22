@@ -55,9 +55,10 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[1],
+              color: createAccentColour(colorName[0]),
               child: Text(
-                colorName[1].substring(4).toUpperCase()),
+                RGBtoHex(hslToRgb(generateAccentColor(colorName[0]).toUpperCase())),
+              ),
               ),
             Padding(padding: const EdgeInsets.all(5)),
           ]
@@ -125,12 +126,14 @@ class _MyAppState extends State<MyApp> {
               onPressed: () {
                 // print(rgbToHSL(hexToRGB(colorName[0])));
                 // print(generateAccentColor(colorName[0]));
+                // print(colorName[0]);
+                // print(hexToRGB(colorName[0]));
+                // var testingColor = (rgbToHSL(hexToRGB(colorName[0])));
+                // print(testingColor);
+                // print(hslToRgb(testingColor));
+                // print(RGBtoHex(hslToRgb(testingColor)));
                 print(colorName[0]);
-                print(hexToRGB(colorName[0]));
-                var testingColor = (rgbToHSL(hexToRGB(colorName[0])));
-                print(testingColor);
-                print(hslToRGB(testingColor));
-                print(RGBtoHex(hslToRGB(testingColor)));
+                print(createAccentColour(colorName[0]).toString());
                 setState(() {
                   colors.clear();
                   colorName.clear();

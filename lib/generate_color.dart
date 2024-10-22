@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 String hexColorGenerator() {
   String hexColor = '0xFF';
@@ -13,9 +14,8 @@ String generatePrimaryColor() {
 }
 
 String generateAccentColor(String passedColor) {
-  String color = passedColor.substring(4);
-  String hslColor = hexToRGB(color);
-  print(hslColor);
+  String hslColor = hexToRGB(passedColor);
+  // print(hslColor);
   var hslList = hslColor.split(', ');
   var h = int.parse(hslList[0]);
   var s = int.parse(hslList[1]);
@@ -23,13 +23,16 @@ String generateAccentColor(String passedColor) {
 
   h -= 20;
 
-  return 'hsl($h, $s%, $l%)';
+  return '$h, $s, $l';
 }
 
-String createAccentColour(String passedColor) {
+Color createAccentColour(passedColor) {
   String hsl = generateAccentColor(passedColor);
-  String rgb = hslToRGB(hsl);
-  return RGBtoHex(rgb);
+  String rgb = hslToRgb(hsl);
+  String returnedValue = RGBtoHex(rgb);
+  var color = '0xFF$returnedValue';
+  return Color(int.parse(color));
+  // return Color(int.parse(returnedValue), radix: 16);
 }
 
 String hexToRGB(String color) { // https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
@@ -45,9 +48,9 @@ String hexToRGB(String color) { // https://stackoverflow.com/questions/2353211/h
 
 String rgbToHSL(String rgb) {
   var rgbList = rgb.split(', ');
-  var r1 = int.parse(rgbList[0]);
-  var g1 = int.parse(rgbList[1]);
-  var b1 = int.parse(rgbList[2]);
+  var r1 = num.parse(rgbList[0]);
+  var g1 = num.parse(rgbList[1]);
+  var b1 = num.parse(rgbList[2]);
 
   var r2 = r1 / 255;
   var g2 = g1 / 255;
@@ -75,38 +78,41 @@ String rgbToHSL(String rgb) {
   return '$h, $s, $l';
 }
 
-String hslToRGB(String hsl) {
+String hslToRgb(String hsl) {
   var hslList = hsl.split(', ');
   var h = num.parse(hslList[0]);
   var s = num.parse(hslList[1]);
   var l = num.parse(hslList[2]);
+  var r, g, b;
 
-  num q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-  num p = 2 * l - q;
-
-  var r = hueToRGB(p, q, h / 360 + 1/3);
-  var g = hueToRGB(p, q, h / 360);
-  var b = hueToRGB(p, q, h / 360 - 1/3);
-
+  if (s == 0) {
+    r = g = b = l; // achromatic
+  } else {
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    var p = 2 * l - q;
+    r = hueToRgb(p, q, h + 1/3);
+    g = hueToRgb(p, q, h);
+    b = hueToRgb(p, q, h - 1/3);
+  }
 
   return '${(r * 255).round()}, ${(g * 255).round()}, ${(b * 255).round()}';
 }
 
-num hueToRGB (num p, num q, num t) {
+num hueToRgb(p, q, t) {
   if (t < 0) t += 1;
   if (t > 1) t -= 1;
-  if (t < 1/6) return (p + (q - p) * 6 * t);
+  if (t < 1/6) return p + (q - p) * 6 * t;
   if (t < 1/2) return q;
-  if (t < 2/3) return (p + (q - p) * (2/3 - t) * 6);
+  if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
   return p;
 }
 
 String RGBtoHex(String rgb) {
   var rgbList = rgb.split(', ');
-  var r = int.parse(rgbList[0]);
-  var g = int.parse(rgbList[1]);
-  var b = int.parse(rgbList[2]);
+  int r = int.parse(rgbList[0]);
+  int g = int.parse(rgbList[1]);
+  int b = int.parse(rgbList[2]);
 
-  String hex = r.toRadixString(16) + g.toRadixString(16) + b.toRadixString(16);
+  String hex = r.toRadixString(16);
   return hex;
 }
