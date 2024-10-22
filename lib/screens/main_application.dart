@@ -1,26 +1,23 @@
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:pallette_generator/generate_color.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     List<Color> colors = [];
     List<String> colorName = [];
 
-    // for (int i = 0; i < 6; i++) {
-    //   colors.add(Color(int.parse(hexColorGenerator())));
-    //   colorName.add(hexColorGenerator());
-    // }   
-
     for (int i = 0; i < 6; i++) {
-      colors.add(Color(0xFF000000));
-      colorName.add('Empt');
-    }
+      colors.add(Color(int.parse(hexColorGenerator())));
+      colorName.add(hexColorGenerator());
+    }   
 
     return MaterialApp(
       title: 'Palette Generator',
@@ -107,12 +104,19 @@ class MyApp extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                colors.clear();
-                colorName.clear();
-                for (int i = 0; i < 6; i++) {
-                  colors.add(Color(int.parse(hexColorGenerator())));
-                  colorName.add(hexColorGenerator());
-                }
+                setState(() {
+                  print('Button Pressed');
+                  colors.clear();
+                  colorName.clear();
+                  for (int i = 0; i < 6; i++) {
+                    String colorHex = hexColorGenerator();
+                    print('Generated Color: $colorHex');
+                    colors.add(Color(int.parse(colorHex)));
+                    colorName.add(colorHex);
+                  }
+                  print('Colors: $colors');
+                  print('Color Names: $colorName');
+                });
               },
               child: const Text('Generate Palette'),
             )
