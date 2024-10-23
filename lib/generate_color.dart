@@ -10,16 +10,16 @@ String hexColorGenerator() {
 }
 
 
-// String generateLighterColours() {
-//   String hexColor = '0xFF';
-//   int min = 12;
-//   int max = 16;
-//   for (int i = 0; i < 6; i++) {
-//     hexColor += Random().nextInt((max + 1) - min).toRadixString(16);
-//   }
-//   print(hexColor);
-//   return hexColor;
-// }
+String generateLighterColours() {
+  String hexColor = '0xFF';
+  int min = 12;
+  int max = 16;
+  for (int i = 0; i < 6; i++) {
+    print(hexColor += Random().nextInt((max + 4)).toRadixString(16));
+  }
+  print(hexColor);
+  return hexColor;
+}
 
 
 String generatePrimaryColor() {

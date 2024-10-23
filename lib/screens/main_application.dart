@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pallette_generator/generate_color.dart';
 
 class MyApp extends StatefulWidget {
@@ -47,28 +48,37 @@ class _MyAppState extends State<MyApp> {
           child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              width: colorContainerDisplay,
-              height: colorContainerDisplay,
-              decoration: BoxDecoration(
-                color: colors[0],
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
+          children: [ 
+            InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[0].substring(4).toUpperCase()));
+              },
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: colorContainerDisplay,
+                height: colorContainerDisplay,
+                decoration: BoxDecoration(
+                  color: colors[0],
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                ),
+                child: Text(
+                  colorName[0].substring(4).toUpperCase()),
               ),
-              child: Text(
-                colorName[0].substring(4).toUpperCase()),
-              ),
+            ),
             const Padding(padding: EdgeInsets.all(5)),
-            Container(
+            InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[1].substring(4).toUpperCase()));
+              },
+              child: Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
@@ -88,6 +98,7 @@ class _MyAppState extends State<MyApp> {
                 colorName[1].substring(4).toUpperCase(),
               ),
               ),
+            ),
             const Padding(padding: EdgeInsets.all(5)),
           ]
           )
@@ -98,7 +109,11 @@ class _MyAppState extends State<MyApp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[2].substring(4).toUpperCase()));
+              },
+              child: Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
@@ -117,8 +132,13 @@ class _MyAppState extends State<MyApp> {
               child: Text(
                 colorName[2].substring(4).toUpperCase()),
               ),
+            ),
             const Padding(padding: EdgeInsets.all(5)),
-            Container(
+            InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[3].substring(4).toUpperCase()));
+              },
+              child: Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
@@ -137,18 +157,23 @@ class _MyAppState extends State<MyApp> {
               child: Text(
                 colorName[3].substring(4).toUpperCase()),
               ),
+            ),
           const Padding(padding: EdgeInsets.all(5)),
           ]
           )
           ),
-                  Column(
+          Column(
           children: [
           Container(         
           padding: const EdgeInsets.all(5),
           child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: [ InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[4].substring(4).toUpperCase()));
+              },
+            child:
             Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
@@ -168,7 +193,13 @@ class _MyAppState extends State<MyApp> {
               child: Text(
                 colorName[4].substring(4).toUpperCase()),
               ),
+            ),
             const Padding(padding: EdgeInsets.all(5)),
+            InkWell(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: colorName[5].substring(4).toUpperCase()));
+              },
+            child: 
             Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
@@ -188,6 +219,7 @@ class _MyAppState extends State<MyApp> {
               child: Text(
                 colorName[5].substring(4).toUpperCase()),
               ),
+            ),
             const Padding(padding: EdgeInsets.all(5)),
           ]
           )
