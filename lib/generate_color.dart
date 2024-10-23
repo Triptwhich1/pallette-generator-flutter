@@ -9,6 +9,19 @@ String hexColorGenerator() {
   return hexColor;
 }
 
+
+// String generateLighterColours() {
+//   String hexColor = '0xFF';
+//   int min = 12;
+//   int max = 16;
+//   for (int i = 0; i < 6; i++) {
+//     hexColor += Random().nextInt((max + 1) - min).toRadixString(16);
+//   }
+//   print(hexColor);
+//   return hexColor;
+// }
+
+
 String generatePrimaryColor() {
   return hexColorGenerator();
 }
@@ -83,7 +96,7 @@ String hslToRgb(String hsl) {
   var h = num.parse(hslList[0]);
   var s = num.parse(hslList[1]);
   var l = num.parse(hslList[2]);
-  var r, g, b;
+  num r, g, b;
 
   if (s == 0) {
     r = g = b = l; // achromatic
@@ -113,6 +126,6 @@ String RGBtoHex(String rgb) {
   int g = int.parse(rgbList[1]);
   int b = int.parse(rgbList[2]);
 
-  String hex = r.toRadixString(16);
+  String hex = 'rgb(${r.toString()}, ${g.toString()}, ${b.toString()})';
   return hex;
 }

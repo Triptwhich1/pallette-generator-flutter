@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:pallette_generator/generate_color.dart';
 
@@ -12,17 +10,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var colorContainerDisplay = 175.0;
-
+  List<Color> colors = [];
+  List<String> colorName = [];
 
   @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < 4; i++) {
+      String colorHex = hexColorGenerator();
+      colors.add(Color(int.parse(colorHex)));
+      colorName.add(colorHex);
+    }
+    for (int i = 0; i < 2; i++) {
+      String colorHex = generateLighterColours();
+      colors.add(Color(int.parse(colorHex)));
+      colorName.add(colorHex);
+    }
+  }
+  @override
   Widget build(BuildContext context) {
-    List<Color> colors = [];
-    List<String> colorName = [];
-
-    for (int i = 0; i < 6; i++) {
-      colors.add(Color(int.parse(hexColorGenerator())));
-      colorName.add(hexColorGenerator());
-    }   
 
     return MaterialApp(
       title: 'Palette Generator',
@@ -35,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         body: 
         Column(
           children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Container(         
           padding: const EdgeInsets.all(5),
           child: Row(
@@ -46,21 +52,43 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[0],
+              decoration: BoxDecoration(
+                color: colors[0],
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              ),
               child: Text(
                 colorName[0].substring(4).toUpperCase()),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+            const Padding(padding: EdgeInsets.all(5)),
             Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: createAccentColour(colorName[0]),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colors[1],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+              ]
+              ),
               child: Text(
-                RGBtoHex(hslToRgb(generateAccentColor(colorName[0]).toUpperCase())),
+                colorName[1].substring(4).toUpperCase(),
               ),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+            const Padding(padding: EdgeInsets.all(5)),
           ]
           )
           ),
@@ -74,20 +102,42 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[2],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colors[2],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              ),
               child: Text(
                 colorName[2].substring(4).toUpperCase()),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+            const Padding(padding: EdgeInsets.all(5)),
             Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[3],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colors[3],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              ),
               child: Text(
                 colorName[3].substring(4).toUpperCase()),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+          const Padding(padding: EdgeInsets.all(5)),
           ]
           )
           ),
@@ -103,26 +153,54 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[4],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colors[4],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              ),
               child: Text(
                 colorName[4].substring(4).toUpperCase()),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+            const Padding(padding: EdgeInsets.all(5)),
             Container(
               padding: const EdgeInsets.all(10),
               width: colorContainerDisplay,
               height: colorContainerDisplay,
-              color: colors[5],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colors[5],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              ),
               child: Text(
                 colorName[5].substring(4).toUpperCase()),
               ),
-            Padding(padding: const EdgeInsets.all(5)),
+            const Padding(padding: EdgeInsets.all(5)),
           ]
           )
           ),    
           Container(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:  Color(0xFF444444),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(1000),
+                ),
+              ),
               onPressed: () {
                 // print(rgbToHSL(hexToRGB(colorName[0])));
                 // print(generateAccentColor(colorName[0]));
@@ -132,8 +210,8 @@ class _MyAppState extends State<MyApp> {
                 // print(testingColor);
                 // print(hslToRgb(testingColor));
                 // print(RGBtoHex(hslToRgb(testingColor)));
-                print(colorName[0]);
-                print(createAccentColour(colorName[0]).toString());
+                // print(colorName[0]);
+                // print(createAccentColour(colorName[0]).toString());
                 setState(() {
                   colors.clear();
                   colorName.clear();
@@ -144,8 +222,9 @@ class _MyAppState extends State<MyApp> {
                   }
                 });
               },
-              child: const Text('Generate Palette'),
-            )
+              child: const Text('Generate Palette',
+              style: TextStyle(color: Colors.white))
+          )
           )
           ]
         )
