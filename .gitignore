@@ -41,3 +41,45 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter dependencies
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache
+.pub
+
+# Generated files
+*.dart.js
+*.js
+*.js_
+*.js.deps
+*.js.map
+*.info.json
+*.symbols
+*.d
+*.part
+*.map
+*.json
+
+# Coverage
+coverage/
+
+# Built application files
+*.apk
+*.aab
+*.ipa
+
+# iOS related
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Android related
+android/key.properties
+android/app/google-services.json
+android/app/src/debug/
+android/app/src/profile/
+android/app/src/release/

@@ -234,16 +234,6 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               onPressed: () {
-                // print(rgbToHSL(hexToRGB(colorName[0])));
-                // print(generateAccentColor(colorName[0]));
-                // print(colorName[0]);
-                // print(hexToRGB(colorName[0]));
-                // var testingColor = (rgbToHSL(hexToRGB(colorName[0])));
-                // print(testingColor);
-                // print(hslToRgb(testingColor));
-                // print(RGBtoHex(hslToRgb(testingColor)));
-                // print(colorName[0]);
-                // print(createAccentColour(colorName[0]).toString());
                 setState(() {
                   colors.clear();
                   colorName.clear();
