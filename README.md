@@ -1,16 +1,8 @@
-# pallette_generator
+# Pallete Generator
 
-A new Flutter project.
+This is a colour pallete generator that I created using flutter. I wanted this to use different shades of colours however that hasn't been implemented yet. But will be in the future.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Generates random hex colours
+- Clicking on a generated colour added to clipboard
